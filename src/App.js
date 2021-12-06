@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+const App = () => {
+  const useField = (type) => {
+    const [value, setValue] = useState('')
+  
+    const onChange = (event) => {
+      setValue(event.target.value)
+    }
+  
+    return {
+      type,
+      value,
+      onChange
+    }
+  }
 
-function App() {
+  const name = useField('text')
+  const born = useField('date')
+  const height = useField('number')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <form>
+        name: 
+        <input {...name} /> 
+        <br/> 
+        birthdate:
+        <input {...born} />
+        <br /> 
+        height:
+        <input {...height} />
+      </form>
+      <div>
+        {name.value} {born.value} {height.value} 
+      </div>
     </div>
-  );
+  )
 }
-
 export default App;
